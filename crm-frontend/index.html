@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./normalize.css">
   <link rel="stylesheet" href="./style.css">
   <title>CRM</title>
 </head>
@@ -20,8 +21,20 @@
     </div>
   </div>
 
-
-  <button id="btn" class="btn">тык</button>
+  <div class="add_popup">
+    <div class="popup">
+      <div><span>Изменить данные</span><span>тут будет id</span></div>
+      <form id="add_user_form" action="submit">
+        <input type="text" placeholder="Фамилия" required>
+        <input type="text" placeholder="Имя" required>
+        <input type="text" placeholder="Отчество">
+        <button type="submit">Сохранить</button>
+        <button>Отмена</button>
+      </form>
+      <button id="add_contact">Добавить контакт</button>
+    </div>
+  </div>
+  <button id="add_user_popup">Добавить клиента</button>
   <script src="./functions.js"></script>
   <script src="./script.js"></script>
 </body>

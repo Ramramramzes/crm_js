@@ -20,13 +20,11 @@ const client = {
     }
   ]
 };
-const btn = document.getElementById('btn');
-const list = document.getElementById('list');
+const list = document.getElementById('list'); //? Основной список
 
 (async () => {
   try {
     const allClients = await getClients();
-    console.log(allClients);
     if (allClients.length !== 0) {
       for (const el of allClients) {
         const item = document.createElement('li');
@@ -39,6 +37,7 @@ const list = document.getElementById('list');
   }
 })();
 
-btn.addEventListener('click', async () => {
-  await addContact(client)
-})
+// btn.addEventListener('click', async () => {
+//   await addContact(client)
+// })
+
