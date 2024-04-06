@@ -5,7 +5,21 @@
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, .6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+.popup{
+  background-color: #fff;
+  width: 40%;
+  height: 50vh;
+}
+
+.add_user_form{
+  display: flex;
+  flex-direction: column;
+}
+
 .dn{
   display: none;
 }

@@ -21,19 +21,22 @@
     </div>
   </div>
 
-  <div class="add_popup">
+  <div class="add_popup" id="add_popup">
     <div class="popup">
       <div><span>Изменить данные</span><span>тут будет id</span></div>
-      <form id="add_user_form" action="#">
+      <form id="add_user_form" action="#" class="add_user_form">
         <input id="surname_input_add"type="text" placeholder="Фамилия" required>
         <input id="name_input_add" type="text" placeholder="Имя" required>
         <input id="lastname_input_add"type="text" placeholder="Отчество">
-        <button id="save_user_add">Сохранить</button>
-        <button>Отмена</button>
       </form>
-      <button id="add_contact">Добавить контакт</button>
+        <div class="contact_inf" id="contact_inf">
+          <button id="add_contact">Добавить контакт</button>
+        </div>
+        <button id="save_user_add">Сохранить</button>
+        <button id="cancle_add">Отмена</button>
     </div>
   </div>
+
   <button id="add_user_popup">Добавить клиента</button>
   <script src="./functions.js"></script>
   <script src="./script.js"></script>

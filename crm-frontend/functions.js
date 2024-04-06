@@ -1,5 +1,9 @@
 const add_contact = document.getElementById('add_contact') //? Кнопка добавить контакт
 const save_user_add = document.getElementById('save_user_add') //? Кнопка сохранить клиента при ДОБАВЛЕНИИ
+const cancle_add = document.getElementById('cancle_add')//? Кнопка отмены в попапе добавления 
+const add_user_popup = document.getElementById('add_user_popup') //? Кнопка открытия попапа
+const addPopup = document.getElementById('add_popup')
+addPopup.classList.add('dn') //? Скрываем сразу попап
 
 //? Получение массива пользователей
 async function getClients() {
@@ -67,8 +71,8 @@ function addContact_popup(){
   contactBlock.append(contactSelect)
   contactBlock.append(input)
   contactBlock.append(delBtn)
-  const form = document.getElementById('add_user_form')
-  form.append(contactBlock)
+  const contactInf = document.getElementById('contact_inf')
+  contactInf.prepend(contactBlock)
 
   delBtn.addEventListener('click',() => {
     if(counter <= 9) add_contact.classList.remove('dn')
@@ -77,9 +81,7 @@ function addContact_popup(){
 
   if(counter >= 9) document.getElementById('add_contact').classList.add('dn')
 }
-//? Сохранить клиента при ДОБАВЛЕНИИ
-
-
+//? Текущая дата
 function currentDate(){
   const currentDate = new Date();
   const year = currentDate.getFullYear();
@@ -92,6 +94,22 @@ function currentDate(){
   const formattedDate = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.${milliseconds}Z`;
 
   return formattedDate
+}
+//? Закрыть попап
+function closeAddPopup(){
+  const surnameInput = document.getElementById('surname_input_add')
+  const nameInput = document.getElementById('name_input_add')
+  const lastNameInput = document.getElementById('lastname_input_add')
+  surnameInput.value = ''
+  nameInput.value = ''
+  lastNameInput.value = ''
+  const counter = document.querySelectorAll('.contact_block_add').length
+  if(counter != 0){
+    for (let i = 0; i < counter; i++) {
+      document.getElementById(`contact_block_${i}`).remove()
+    }
+  }
+  addPopup.classList.add('dn')
 }
 
 //! События кликов
@@ -135,4 +153,16 @@ save_user_add.addEventListener('click',() => {
   }
 })
 
+add_user_popup.addEventListener('click',() => {
+  addPopup.classList.remove('dn')
+})
 
+addPopup.addEventListener('click',(event) => {
+  if(event.target === document.getElementById('add_popup')){
+    closeAddPopup()
+  }
+})
+
+cancle_add.addEventListener('click', () => {
+  closeAddPopup()
+})

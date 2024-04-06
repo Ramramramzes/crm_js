@@ -4,9 +4,9 @@ const list = document.getElementById('list'); //? Основной список
   try {
     const allClients = await getClients();
     if (allClients.length !== 0) {
-      for (const el of allClients) {
+      for (let i = 0; i < allClients.length; i++) {
         const item = document.createElement('li');
-        item.textContent = `${allClients[0].id}-${allClients[0].name}-${allClients[0].surname}`;
+        item.textContent = `${allClients[i].id}-${allClients[i].name}-${allClients[i].surname}`;
         list.append(item);
       }
     }
@@ -15,7 +15,4 @@ const list = document.getElementById('list'); //? Основной список
   }
 })();
 
-// btn.addEventListener('click', async () => {
-//   await addContact(client)
-// })
 
