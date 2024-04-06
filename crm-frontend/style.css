@@ -9,6 +9,31 @@
   justify-content: center;
   align-items: center;
 }
+.list{
+  padding: 0px 20px;
+}
+.list_item{
+  display: flex;
+  justify-content: space-between;
+}
+.id{
+  width: 15%;
+}
+.fio{
+  width: 20%;
+}
+.create_date{
+  width: 10%;
+}
+.contacts{
+  width: 20%;
+}
+.actions{
+  width: 15%;
+  display: flex;
+  justify-content: space-between;
+}
+
 .popup{
   background-color: #fff;
   width: 40%;

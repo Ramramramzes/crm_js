@@ -36,6 +36,21 @@ async function addContact(client){
     console.log('Ошибка запроса catch ',err)
   }
 }
+
+// ? Удаление клиента
+function deleteUserFromBase(id){
+  fetch(`http://localhost:3000/api/clients/${id}`,{
+    method: 'DELETE'
+  })
+  .then(resp => {
+    if(!resp.ok){
+      throw new Error('Ошибка с удалением')
+    }
+    return resp
+  })
+  .then(data => console.log('Пользователь удален'))
+  .catch(err => console.log('Ошибка с удалением ',err))
+}
 //? Добавить контакт в блоке нового клиента
 function addContact_popup(){
   const counter = document.querySelectorAll('.contact_block_add').length
@@ -63,6 +78,7 @@ function addContact_popup(){
   const input = document.createElement('input')
   input.type = 'text'
   input.id = `contact_input_${counter}`
+  input.placeholder = 'Введите данные контакта'
   input.classList.add('contact_input')
   const delBtn = document.createElement('button')
   delBtn.textContent = 'x'
@@ -142,14 +158,16 @@ save_user_add.addEventListener('click',() => {
     if(counter != 0){
       for (let i = 0; i < counter; i++) {
         // console.log(`Селект - ${document.getElementById(`contact_select_${i}`).value}, Инпут от селекта ${document.getElementById(`contact_input_${i}`).value}`);
+        if(document.getElementById(`contact_input_${i}`).value.trim() === '') continue
         dataForSend.contacts.push({
           type: `${document.getElementById(`contact_select_${i}`).value}`,
-          value: `${document.getElementById(`contact_input_${i}`).value}`,
+          value: `${document.getElementById(`contact_input_${i}`).value.trim()}`,
         })
       }
     }
     dataForSend.createdAt = currentDate().toString()
     addContact(dataForSend)
+    closeAddPopup()
   }
 })
 
