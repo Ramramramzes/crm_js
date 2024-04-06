@@ -1,3 +1,6 @@
+const add_contact = document.getElementById('add_contact') //? Кнопка добавить контакт
+const save_user_add = document.getElementById('save_user_add') //? Кнопка сохранить клиента при ДОБАВЛЕНИИ
+
 //? Получение массива пользователей
 async function getClients() {
   try {
@@ -30,7 +33,7 @@ async function addContact(client){
   }
 }
 //? Добавить контакт в блоке нового клиента
-function addContact(){
+function addContact_popup(){
   const counter = document.querySelectorAll('.contact_block_add').length
   const contactBlock = document.createElement('div')
   contactBlock.id = `contact_block_${counter}`
@@ -38,11 +41,11 @@ function addContact(){
   const contactSelect = document.createElement('select')
   contactSelect.id = `contact_select_${counter}`
   contactSelect.classList.add('contact_select')
-  var options = [
-    { value: 'phone', text: 'Телефон', selected: true },
-    { value: 'email', text: 'Email' },
-    { value: 'vk', text: 'VK' },
-    { value: 'facebook', text: 'Facebook' }
+  const options = [
+    { value: 'Телефон', text: 'Телефон', selected: true },
+    { value: 'Email', text: 'Email' },
+    { value: 'VK', text: 'VK' },
+    { value: 'Facebook', text: 'Facebook' }
   ];
   options.forEach((el) => {
     const option = document.createElement('option')
@@ -60,8 +63,6 @@ function addContact(){
   const delBtn = document.createElement('button')
   delBtn.textContent = 'x'
   delBtn.id = `del_${contactBlock.id}`
-  
-
 
   contactBlock.append(contactSelect)
   contactBlock.append(input)
@@ -76,10 +77,62 @@ function addContact(){
 
   if(counter >= 9) document.getElementById('add_contact').classList.add('dn')
 }
+//? Сохранить клиента при ДОБАВЛЕНИИ
 
-const add_contact = document.getElementById('add_contact') //? Кнопка добавить контакт
+
+function currentDate(){
+  const currentDate = new Date();
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0'); 
+  const day = String(currentDate.getDate()).padStart(2, '0');
+  const hours = String(currentDate.getHours()).padStart(2, '0');
+  const minutes = String(currentDate.getMinutes()).padStart(2, '0');
+  const seconds = String(currentDate.getSeconds()).padStart(2, '0');
+  const milliseconds = String(currentDate.getMilliseconds()).padStart(3, '0');
+  const formattedDate = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.${milliseconds}Z`;
+
+  return formattedDate
+}
+
 //! События кликов
+//? Добавление контактов в попапе
 add_contact.addEventListener('click',() => {
-  addContact()
+  addContact_popup()
 })
+
+save_user_add.addEventListener('click',() => {
+  const dataForSend = {
+    id:'',
+    createdAt: '',
+    updatedAt: '',
+    name: '',
+    surname: '',
+    lastName: '',
+    contacts: []
+  }
+  const surnameInput = document.getElementById('surname_input_add')
+  const nameInput = document.getElementById('name_input_add')
+  const lastNameInput = document.getElementById('lastname_input_add')
+  
+  if(surnameInput.value.trim() != '' && nameInput.value.trim() != ''){
+    dataForSend.name = nameInput.value
+    dataForSend.surname = surnameInput.value
+    dataForSend.lastName = lastNameInput.value
+    // console.log(`Фамилия - ${surnameInput.value}, Имя - ${nameInput.value}, Отчество - ${lastNameInput.value}`);
+
+    const counter = document.querySelectorAll('.contact_block_add').length
+    if(counter != 0){
+      for (let i = 0; i < counter; i++) {
+        // console.log(`Селект - ${document.getElementById(`contact_select_${i}`).value}, Инпут от селекта ${document.getElementById(`contact_input_${i}`).value}`);
+        dataForSend.contacts.push({
+          type: `${document.getElementById(`contact_select_${i}`).value}`,
+          value: `${document.getElementById(`contact_input_${i}`).value}`,
+        })
+      }
+    }
+    dataForSend.createdAt = currentDate().toString()
+    addContact(dataForSend)
+  }
+})
+
 
