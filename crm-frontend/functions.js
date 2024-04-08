@@ -37,6 +37,26 @@ async function addContact(client){
   }
 }
 
+//? Запись объекта пользователя в базу
+async function sendChangeContact(client,id){
+  try{
+    fetch(`http://localhost:3000/api/clients/${id}`,{
+      method: 'PATCH',
+      body: JSON.stringify(client),
+    })
+    .then(resp => {
+      if(!resp.ok){
+        throw new Error('Ошибка запроса')
+      }else{
+        return resp.json()
+      }
+    })
+    .then((client) => console.log(`Клиент ${client.name} успешно добавлен`))
+  } catch (err){
+    console.log('Ошибка запроса catch ',err)
+  }
+}
+
 // ? Удаление клиента
 function deleteUserFromBase(id){
   fetch(`http://localhost:3000/api/clients/${id}`,{
@@ -51,6 +71,7 @@ function deleteUserFromBase(id){
   .then(data => console.log('Пользователь удален'))
   .catch(err => console.log('Ошибка с удалением ',err))
 }
+
 //? Добавить контакт в блоке нового клиента
 function addContact_popup(){
   const counter = document.querySelectorAll('.contact_block_add').length
@@ -97,20 +118,7 @@ function addContact_popup(){
 
   if(counter >= 9) document.getElementById('add_contact').classList.add('dn')
 }
-//? Текущая дата
-function currentDate(){
-  const currentDate = new Date();
-  const year = currentDate.getFullYear();
-  const month = String(currentDate.getMonth() + 1).padStart(2, '0'); 
-  const day = String(currentDate.getDate()).padStart(2, '0');
-  const hours = String(currentDate.getHours()).padStart(2, '0');
-  const minutes = String(currentDate.getMinutes()).padStart(2, '0');
-  const seconds = String(currentDate.getSeconds()).padStart(2, '0');
-  const milliseconds = String(currentDate.getMilliseconds()).padStart(3, '0');
-  const formattedDate = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.${milliseconds}Z`;
 
-  return formattedDate
-}
 //? Закрыть попап
 function closeAddPopup(){
   const surnameInput = document.getElementById('surname_input_add')
@@ -128,6 +136,86 @@ function closeAddPopup(){
   addPopup.classList.add('dn')
 }
 
+async function getUser(id){
+  try{
+    const resp = await fetch(`http://localhost:3000/api/clients/${id}`);
+    if(!resp.ok){
+      throw new Error('Ошибка запроса')
+    }else{
+      return resp.json()
+    }
+  } catch (err){
+    console.log('Ошибка запроса catch ',err)
+  }
+}
+
+async function changeUserFn(id) {
+  try {
+    const user = await getUser(id);
+    addPopup.classList.remove('dn');
+    console.log(user.surname);
+    const surnameInput = document.getElementById('surname_input_add')
+    const nameInput = document.getElementById('name_input_add')
+    const lastNameInput = document.getElementById('lastname_input_add')
+    surnameInput.value = user.surname
+    nameInput.value = user.name
+    lastNameInput.value = user.lastName
+
+    if(user.contacts.length != 0){
+      for (let i = 0; i < user.contacts.length; i++) {
+        addContact_popup()
+        // document.getElementById(`contact_block_${i}`).
+        document.getElementById(`contact_select_${i}`).value = user.contacts[i].type
+        document.getElementById(`contact_input_${i}`).value = user.contacts[i].value
+      }
+    }
+
+    const sendChange = document.createElement('button')
+    sendChange.id = 'change_contact'
+    sendChange.textContent = 'Изменить контакт'
+    document.getElementById('contact_inf').append(sendChange)
+    document.getElementById('save_user_add').classList.add('dn')
+
+    sendChange.addEventListener('click',()=> {
+      const dataForSend = {
+        name: '',
+        surname: '',
+        lastName: '',
+        updatedAt: '',
+        contacts: []
+      }
+      const surnameInput = document.getElementById('surname_input_add')
+      const nameInput = document.getElementById('name_input_add')
+      const lastNameInput = document.getElementById('lastname_input_add')
+      
+      if(surnameInput.value.trim() != '' && nameInput.value.trim() != ''){
+        dataForSend.name = nameInput.value
+        dataForSend.surname = surnameInput.value
+        dataForSend.lastName = lastNameInput.value
+        // console.log(`Фамилия - ${surnameInput.value}, Имя - ${nameInput.value}, Отчество - ${lastNameInput.value}`);
+    
+        const counter = document.querySelectorAll('.contact_block_add').length
+        if(counter != 0){
+          for (let i = 0; i < counter; i++) {
+            // console.log(`Селект - ${document.getElementById(`contact_select_${i}`).value}, Инпут от селекта ${document.getElementById(`contact_input_${i}`).value}`);
+            if(document.getElementById(`contact_input_${i}`).value.trim() === '') continue
+            dataForSend.contacts.push({
+              type: `${document.getElementById(`contact_select_${i}`).value}`,
+              value: `${document.getElementById(`contact_input_${i}`).value.trim()}`,
+            })
+          }
+        }
+        
+        sendChangeContact(dataForSend,id)
+        closeAddPopup()
+      }
+    })
+  } catch (err) {
+    console.log('Ошибка при получении данных ', err);
+  }
+  
+}
+
 //! События кликов
 //? Добавление контактов в попапе
 add_contact.addEventListener('click',() => {
@@ -137,8 +225,6 @@ add_contact.addEventListener('click',() => {
 save_user_add.addEventListener('click',() => {
   const dataForSend = {
     id:'',
-    createdAt: '',
-    updatedAt: '',
     name: '',
     surname: '',
     lastName: '',
@@ -165,22 +251,32 @@ save_user_add.addEventListener('click',() => {
         })
       }
     }
-    dataForSend.createdAt = currentDate().toString()
     addContact(dataForSend)
     closeAddPopup()
   }
 })
 
 add_user_popup.addEventListener('click',() => {
-  addPopup.classList.remove('dn')
+  document.getElementById('add_contact').classList.remove('dn')
+  document.getElementById('add_popup').classList.remove('dn')
+  document.getElementById('popup_title').textContent = 'Новый клиент'
+  document.getElementById('for_id').textContent = ''
 })
 
+//? Кнопка вне попапа то же самое что и отмена ниже
 addPopup.addEventListener('click',(event) => {
   if(event.target === document.getElementById('add_popup')){
     closeAddPopup()
+    if(document.getElementById('change_contact')){
+      document.getElementById('change_contact').remove()
+    }
+  }
+})
+//? Кнопка отмены 
+cancle_add.addEventListener('click', () => {
+  closeAddPopup()
+  if(document.getElementById('change_contact')){
+    document.getElementById('change_contact').remove()
   }
 })
 
-cancle_add.addEventListener('click', () => {
-  closeAddPopup()
-})

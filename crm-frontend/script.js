@@ -21,7 +21,7 @@ const list = document.getElementById('list'); //? Основной список
 
         const changeDateDiv = document.createElement('div');
         changeDateDiv.classList.add('change_date');
-        changeDateDiv.textContent = `${allClients[i].createdAt}`;
+        changeDateDiv.textContent = `${allClients[i].updatedAt}`;
 
         const contactsDiv = document.createElement('div');
         contactsDiv.classList.add('contacts');
@@ -44,13 +44,13 @@ const list = document.getElementById('list'); //? Основной список
         item.appendChild(actionsDiv);
 
         changeUser.addEventListener('click',() => {
-          console.log(allClients[i].id);
+          changeUserFn(allClients[i].id)
+          document.getElementById('popup_title').textContent = `Изменить данные `
+          document.getElementById('for_id').textContent = `ID: ${allClients[i].id}`
         })
         deleteUser.addEventListener('click',() => {
           deleteUserFromBase(allClients[i].id)
         })
-
-        // item.textContent = `${allClients[i].id}-${allClients[i].name}-${allClients[i].surname}`;
         list.append(item);
       }
     }
