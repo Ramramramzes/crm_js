@@ -25,7 +25,45 @@ const list = document.getElementById('list'); //? Основной список
 
         const contactsDiv = document.createElement('div');
         contactsDiv.classList.add('contacts');
-        contactsDiv.textContent = 'Контакты';
+
+        for (let j = 0; j < allClients[i].contacts.length; j++) {
+          const contact_img_block = document.createElement('div')
+          contact_img_block.classList.add('contact_img_block')
+          const img = document.createElement('img')
+          img.classList.add('contact_img')
+          contact_img_block.append(img)
+          img.id = `contact_img_${j}`
+          if(allClients[i].contacts[j].type === 'Facebook'){
+            img.src = './img/fb.svg'
+          }else
+          if(allClients[i].contacts[j].type === 'Телефон'){
+            img.src = './img/phone.svg'
+          }else
+          if(allClients[i].contacts[j].type === 'Email'){
+            img.src = './img/mail.svg'
+          }else
+          if(allClients[i].contacts[j].type === 'VK'){
+            img.src = './img/vk.svg'
+          }else{
+            img.src = './img/other.svg'
+          }
+
+          if(j >= 4){
+            img.classList.add('dn')
+          }
+          
+          contactsDiv.append(contact_img_block)
+        }
+        const openFullContacts = document.createElement('span')
+        openFullContacts.textContent = `+${allClients[i].contacts.length - 4}`
+        openFullContacts.addEventListener('click',() => {
+          for (let  j = 4; j < allClients[i].contacts.length; j++) {
+            document.getElementById(`contact_img_${j}`).classList.remove('dn')
+          }
+          openFullContacts.classList.add('dn')
+        })
+        contactsDiv.append(openFullContacts)
+
         //! добавить отображение контактов
         const actionsDiv = document.createElement('div');
         const changeUser = document.createElement('button')
