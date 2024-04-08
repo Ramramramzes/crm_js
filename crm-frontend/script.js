@@ -44,7 +44,8 @@ const list = document.getElementById('list'); //? Основной список
           }else
           if(allClients[i].contacts[j].type === 'VK'){
             img.src = './img/vk.svg'
-          }else{
+          }else
+          if(allClients[i].contacts[j].type === 'Другое'){
             img.src = './img/other.svg'
           }
 
@@ -55,7 +56,9 @@ const list = document.getElementById('list'); //? Основной список
           contactsDiv.append(contact_img_block)
         }
         const openFullContacts = document.createElement('span')
-        openFullContacts.textContent = `+${allClients[i].contacts.length - 4}`
+        if(allClients[i].contacts.length > 4){
+          openFullContacts.textContent = `+${allClients[i].contacts.length - 4}`
+        }
         openFullContacts.addEventListener('click',() => {
           for (let  j = 4; j < allClients[i].contacts.length; j++) {
             document.getElementById(`contact_img_${j}`).classList.remove('dn')

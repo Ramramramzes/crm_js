@@ -85,7 +85,8 @@ function addContact_popup(){
     { value: 'Телефон', text: 'Телефон', selected: true },
     { value: 'Email', text: 'Email' },
     { value: 'VK', text: 'VK' },
-    { value: 'Facebook', text: 'Facebook' }
+    { value: 'Facebook', text: 'Facebook' },
+    { value: 'Другое', text: 'Другое' }
   ];
   options.forEach((el) => {
     const option = document.createElement('option')
@@ -129,8 +130,10 @@ function closeAddPopup(){
   lastNameInput.value = ''
   const counter = document.querySelectorAll('.contact_block_add').length
   if(counter != 0){
-    for (let i = 0; i < counter; i++) {
-      document.getElementById(`contact_block_${i}`).remove()
+    for (let i = 0; i <= 10; i++) {
+      if(document.getElementById(`contact_block_${i}`)){
+        document.getElementById(`contact_block_${i}`).remove()
+      }
     }
   }
   addPopup.classList.add('dn')
@@ -153,7 +156,6 @@ async function changeUserFn(id) {
   try {
     const user = await getUser(id);
     addPopup.classList.remove('dn');
-    console.log(user.surname);
     const surnameInput = document.getElementById('surname_input_add')
     const nameInput = document.getElementById('name_input_add')
     const lastNameInput = document.getElementById('lastname_input_add')
@@ -164,7 +166,6 @@ async function changeUserFn(id) {
     if(user.contacts.length != 0){
       for (let i = 0; i < user.contacts.length; i++) {
         addContact_popup()
-        // document.getElementById(`contact_block_${i}`).
         document.getElementById(`contact_select_${i}`).value = user.contacts[i].type
         document.getElementById(`contact_input_${i}`).value = user.contacts[i].value
       }
@@ -192,17 +193,17 @@ async function changeUserFn(id) {
         dataForSend.name = nameInput.value
         dataForSend.surname = surnameInput.value
         dataForSend.lastName = lastNameInput.value
-        // console.log(`Фамилия - ${surnameInput.value}, Имя - ${nameInput.value}, Отчество - ${lastNameInput.value}`);
     
         const counter = document.querySelectorAll('.contact_block_add').length
         if(counter != 0){
-          for (let i = 0; i < counter; i++) {
-            // console.log(`Селект - ${document.getElementById(`contact_select_${i}`).value}, Инпут от селекта ${document.getElementById(`contact_input_${i}`).value}`);
-            if(document.getElementById(`contact_input_${i}`).value.trim() === '') continue
-            dataForSend.contacts.push({
-              type: `${document.getElementById(`contact_select_${i}`).value}`,
-              value: `${document.getElementById(`contact_input_${i}`).value.trim()}`,
-            })
+          for (let i = 0; i <= 10; i++) {
+            if(document.getElementById(`contact_input_${i}`)) {
+              dataForSend.contacts.push({
+                type: `${document.getElementById(`contact_select_${i}`).value}`,
+                value: `${document.getElementById(`contact_input_${i}`).value.trim()}`,
+              })
+            }
+            
           }
         }
         
@@ -238,12 +239,10 @@ save_user_add.addEventListener('click',() => {
     dataForSend.name = nameInput.value
     dataForSend.surname = surnameInput.value
     dataForSend.lastName = lastNameInput.value
-    // console.log(`Фамилия - ${surnameInput.value}, Имя - ${nameInput.value}, Отчество - ${lastNameInput.value}`);
 
     const counter = document.querySelectorAll('.contact_block_add').length
     if(counter != 0){
       for (let i = 0; i < counter; i++) {
-        // console.log(`Селект - ${document.getElementById(`contact_select_${i}`).value}, Инпут от селекта ${document.getElementById(`contact_input_${i}`).value}`);
         if(document.getElementById(`contact_input_${i}`).value.trim() === '') continue
         dataForSend.contacts.push({
           type: `${document.getElementById(`contact_select_${i}`).value}`,
