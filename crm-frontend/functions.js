@@ -172,7 +172,7 @@ async function changeUserFn(id) {
 
     const sendChange = document.createElement('button')
     sendChange.id = 'change_contact'
-    sendChange.textContent = 'Изменить контакт'
+    sendChange.textContent = 'Сохранить'
     document.getElementById('contact_inf').append(sendChange)
     document.getElementById('save_user_add').classList.add('dn')
 
