@@ -74,29 +74,43 @@ function deleteUserFromBase(id){
 
 //? Добавить контакт в блоке нового клиента
 function addContact_popup(){
-  const counter = document.querySelectorAll('.contact_block_add').length
-  const contactBlock = document.createElement('div')
-  contactBlock.id = `contact_block_${counter}`
-  contactBlock.classList.add('contact_block_add')
-  const contactSelect = document.createElement('select')
-  contactSelect.id = `contact_select_${counter}`
-  contactSelect.classList.add('contact_select')
   const options = [
-    { value: 'Телефон', text: 'Телефон', selected: true },
+    { value: 'Телефон', text: 'Телефон'},
     { value: 'Email', text: 'Email' },
     { value: 'VK', text: 'VK' },
     { value: 'Facebook', text: 'Facebook' },
     { value: 'Другое', text: 'Другое' }
   ];
+  const counter = document.querySelectorAll('.contact_block_add').length
+  const contactBlock = document.createElement('div')
+  contactBlock.id = `contact_block_${counter}`
+  contactBlock.classList.add('contact_block_add')
+  const customSelect = document.createElement('div')
+  customSelect.id = `customSelect_${counter}`
+  const selected = document.createElement('div')
+  selected.id = `selected_${counter}`
+  selected.textContent = 'Телефон'
+  const customOptions = document.createElement('div')
+  customOptions.id = `customOptions_${counter}`
   options.forEach((el) => {
-    const option = document.createElement('option')
-    if(el.selected){
-      option.selected = true
-    }
-    option.value = el.value
-    option.textContent = el.text
-    contactSelect.appendChild(option)
+    const opt = document.createElement('span')
+    opt.textContent = el.value
+    opt.addEventListener('click',() => {
+      selected.textContent = opt.textContent
+      customOptions.classList.toggle('dn')
+    })
+    customOptions.append(opt)
   })
+  customSelect.append(selected)
+  customSelect.append(customOptions)
+  contactBlock.append(customSelect)
+
+  customOptions.classList.toggle('dn')
+
+  selected.addEventListener('click', () => {
+    customOptions.classList.toggle('dn')
+  })
+
   const input = document.createElement('input')
   input.type = 'text'
   input.id = `contact_input_${counter}`
@@ -106,11 +120,10 @@ function addContact_popup(){
   delBtn.textContent = 'x'
   delBtn.id = `del_${contactBlock.id}`
 
-  contactBlock.append(contactSelect)
   contactBlock.append(input)
   contactBlock.append(delBtn)
   const contactInf = document.getElementById('contact_inf')
-  contactInf.prepend(contactBlock)
+  document.getElementById('contacts_block').append(contactBlock)
 
   delBtn.addEventListener('click',() => {
     if(counter <= 9) add_contact.classList.remove('dn')
@@ -166,7 +179,7 @@ async function changeUserFn(id) {
     if(user.contacts.length != 0){
       for (let i = 0; i < user.contacts.length; i++) {
         addContact_popup()
-        document.getElementById(`contact_select_${i}`).value = user.contacts[i].type
+        document.getElementById(`selected_${i}`).textContent = user.contacts[i].type
         document.getElementById(`contact_input_${i}`).value = user.contacts[i].value
       }
     }
@@ -199,7 +212,7 @@ async function changeUserFn(id) {
           for (let i = 0; i <= 10; i++) {
             if(document.getElementById(`contact_input_${i}`)) {
               dataForSend.contacts.push({
-                type: `${document.getElementById(`contact_select_${i}`).value}`,
+                type: `${document.getElementById(`selected_${i}`).textContent}`,
                 value: `${document.getElementById(`contact_input_${i}`).value.trim()}`,
               })
             }
@@ -245,7 +258,7 @@ save_user_add.addEventListener('click',() => {
       for (let i = 0; i < counter; i++) {
         if(document.getElementById(`contact_input_${i}`).value.trim() === '') continue
         dataForSend.contacts.push({
-          type: `${document.getElementById(`contact_select_${i}`).value}`,
+          type: `${document.getElementById(`selected_${i}`).textContent}`,
           value: `${document.getElementById(`contact_input_${i}`).value.trim()}`,
         })
       }
