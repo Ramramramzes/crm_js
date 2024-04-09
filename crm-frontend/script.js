@@ -76,7 +76,9 @@ const list = document.getElementById('list'); //? Основной список
             contactImages[j].classList.remove('dn');
             contactImages[j].classList.add('margin_for_all_contacts')
           }
-        });        
+        });    
+        
+        openFullContacts.textContent === '' ? openFullContacts.classList.add('dn') : false //? скрываем пустой шарик
         contactsDiv.append(openFullContacts)
 
         const actionsDiv = document.createElement('div');
