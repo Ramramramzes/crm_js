@@ -38,9 +38,8 @@ const list = document.getElementById('list'); //? Основной список
           const contact_img_block = document.createElement('div')
           contact_img_block.classList.add('contact_img_block')
           const img = document.createElement('img')
-          img.classList.add('contact_img')
           contact_img_block.append(img)
-          img.id = `contact_img_${j}`
+          img.classList.add(`contact_img_${j}`)
           if(allClients[i].contacts[j].type === 'Facebook'){
             img.src = './img/fb.svg'
           }else
@@ -63,16 +62,21 @@ const list = document.getElementById('list'); //? Основной список
           
           contactsDiv.append(contact_img_block)
         }
+        
         const openFullContacts = document.createElement('span')
         if(allClients[i].contacts.length > 4){
           openFullContacts.textContent = `+${allClients[i].contacts.length - 4}`
         }
+        
         openFullContacts.addEventListener('click',() => {
-          for (let  j = 4; j < allClients[i].contacts.length; j++) {
-            document.getElementById(`contact_img_${j}`).classList.remove('dn')
+          const contactImages = document.querySelectorAll(`.list_item:nth-child(${i + 1}) .contact_img_block img`);
+          const spans = document.querySelectorAll(`.list_item:nth-child(${i + 1}) .contacts span`);
+          spans[0].classList.add('dn')
+          for (let j = 4; j < allClients[i].contacts.length; j++) {
+            contactImages[j].classList.remove('dn');
+            contactImages[j].classList.add('margin_for_all_contacts')
           }
-          openFullContacts.classList.add('dn')
-        })
+        });        
         contactsDiv.append(openFullContacts)
 
         const actionsDiv = document.createElement('div');

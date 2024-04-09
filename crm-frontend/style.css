@@ -1,3 +1,9 @@
+body{
+  font-family: 'Open Sans', sans-serif;
+  color: #333333;
+  font-size: 14px;
+}
+
 .add_popup{
   position: fixed;
   top: 0;
@@ -44,7 +50,7 @@
 }
 
 .dn{
-  display: none;
+  display: none !important;
 }
 
 /*! начало */
@@ -77,10 +83,66 @@
   padding-bottom: 25px;
   font-size: 24px;
   font-weight: bolder;
-  font-family: 'Open Sans', sans-serif;
 }
 
 .list{
   padding: 0px 20px;
   background-color: #fff;
+}
+
+.list_item{
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.id{
+  font-size: 12px;
+  color: #B0B0B0;
+}
+
+.fio{
+
+}
+
+.create_date, .change_date{
+  width: 9%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.create_date span:last-child,
+.change_date span:last-child{
+  color: #B0B0B0;
+}
+
+.contacts{
+  width: 10%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+}
+
+.contact_img_block:nth-child(1),
+.contact_img_block:nth-child(2),
+.contact_img_block:nth-child(3),
+.contact_img_block:nth-child(4){
+  margin-right: 7px;
+}
+
+.margin_for_all_contacts{
+  margin-right: 7px;
+}
+
+.contacts span{
+  width: 15px;
+  height: 15px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #9873FF;
+  border-radius: 100%;
+  font-size: 8px;
+  cursor: pointer;
 }
