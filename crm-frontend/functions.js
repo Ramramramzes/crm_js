@@ -1,9 +1,14 @@
 const add_contact = document.getElementById('add_contact') //? Кнопка добавить контакт
 const save_user_add = document.getElementById('save_user_add') //? Кнопка сохранить клиента при ДОБАВЛЕНИИ
 const cancle_add = document.getElementById('cancle_add')//? Кнопка отмены в попапе добавления 
+const cancle_del = document.getElementById('del_cancel')//? Кнопка отмены в попапе удаления
 const add_user_popup = document.getElementById('add_user_popup') //? Кнопка открытия попапа
 const addPopup = document.getElementById('add_popup')
+const delPopup = document.getElementById('del_popup')
+const delBtnInChange = document.getElementById('del_user_add')
+
 addPopup.classList.add('dn') //? Скрываем сразу попап
+delPopup.classList.add('dn') //? Скрываем сразу попап
 
 //? Получение массива пользователей
 async function getClients() {
@@ -135,6 +140,8 @@ function addContact_popup(){
 
 //? Закрыть попап
 function closeAddPopup(){
+  const del_popup = document.getElementById('del_popup')
+  delPopup.classList.add('dn')
   const surnameInput = document.getElementById('surname_input_add')
   const nameInput = document.getElementById('name_input_add')
   const lastNameInput = document.getElementById('lastname_input_add')
@@ -166,6 +173,13 @@ async function getUser(id){
 }
 
 async function changeUserFn(id) {
+  delBtnInChange.addEventListener('click',() => {
+    closeAddPopup()
+    delPopup.classList.remove('dn')
+    document.getElementById('del_btn').addEventListener('click',() => {
+      deleteUserFromBase(id)
+    })
+  })
   try {
     const user = await getUser(id);
     addPopup.classList.remove('dn');
@@ -219,7 +233,6 @@ async function changeUserFn(id) {
             
           }
         }
-        
         sendChangeContact(dataForSend,id)
         closeAddPopup()
       }
@@ -275,6 +288,8 @@ add_user_popup.addEventListener('click',() => {
 
   document.getElementById('del_user_add').classList.add('dn')
   document.getElementById('cancle_add').classList.remove('dn')
+  document.getElementById('save_user_add').classList.remove('dn')
+  
 })
 
 //? Кнопка вне попапа то же самое что и отмена ниже
@@ -286,6 +301,7 @@ addPopup.addEventListener('click',(event) => {
     }
   }
 })
+
 //? Кнопка отмены 
 cancle_add.addEventListener('click', () => {
   closeAddPopup()
@@ -294,3 +310,17 @@ cancle_add.addEventListener('click', () => {
   }
 })
 
+//? Кнопка отмены 
+cancle_del.addEventListener('click', () => {
+  closeAddPopup()
+  if(document.getElementById('change_contact')){
+    document.getElementById('change_contact').remove()
+  }
+})
+
+//? Кнопка вне попапа то же самое что и отмена ниже
+delPopup.addEventListener('click',(event) => {
+  if(event.target === document.getElementById('del_popup')){
+    closeAddPopup()
+  }
+})

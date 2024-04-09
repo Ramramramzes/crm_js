@@ -91,8 +91,12 @@ const list = document.getElementById('list'); //? Основной список
           document.getElementById('popup_title').textContent = `Изменить данные `
           document.getElementById('for_id').textContent = `ID: ${allClients[i].id}`
         })
+
         deleteUser.addEventListener('click',() => {
-          deleteUserFromBase(allClients[i].id)
+          delPopup.classList.remove('dn')
+          document.getElementById('del_btn').addEventListener('click',() => {
+            deleteUserFromBase(allClients[i].id)
+          })
         })
         list.append(item);
       }

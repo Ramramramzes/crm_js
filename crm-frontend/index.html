@@ -23,6 +23,7 @@
 
   <div class="add_popup" id="add_popup">
     <div class="popup">
+      <span class="close" id="close_add">x</span>
       <div><span id="popup_title"></span><span id="for_id"></span></div>
       <form id="add_user_form" action="#" class="add_user_form">
         <input id="surname_input_add"type="text" placeholder="Фамилия" required>
@@ -38,22 +39,14 @@
         <button id="del_user_add" class="cancle_del">Удалить клиента</button>
     </div>
   </div>
-  
-  <div class="add_popup" id="add_popup">
+
+  <div class="add_popup" id="del_popup">
     <div class="popup">
-      <div><span id="popup_title"></span><span id="for_id"></span></div>
-      <form id="add_user_form" action="#" class="add_user_form">
-        <input id="surname_input_add"type="text" placeholder="Фамилия" required>
-        <input id="name_input_add" type="text" placeholder="Имя" required>
-        <input id="lastname_input_add"type="text" placeholder="Отчество">
-      </form>
-        <div class="contact_inf" id="contact_inf">
-          <div id="contacts_block"></div>
-          <button id="add_contact">Добавить контакт</button>
-        </div>
-        <button id="save_user_add">Сохранить</button>
-        <button id="cancle_add" class="cancle_del">Отмена</button>
-        <button id="del_user_add" class="cancle_del">Удалить клиента</button>
+      <span class="close" id="close_del">x</span>
+      <span class="del_title">Удалить клиента</span>
+      <span class="del_text">Вы действительно хотите удалить данного клиента?</span>
+      <button id="del_btn" class="del_btn">Удалить</button>
+      <button id="del_cancel" class="cancle_del">Отмена</button>
     </div>
   </div>
   
