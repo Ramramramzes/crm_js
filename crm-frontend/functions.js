@@ -242,6 +242,23 @@ async function changeUserFn(id) {
   }
 }
 
+function formatedDateD(date){
+  const inputDate = new Date(date);
+  const day = String(inputDate.getDate()).padStart(2, '0');
+  const month = String(inputDate.getMonth() + 1).padStart(2, '0');
+  const year = inputDate.getFullYear();
+
+  return `${day}.${month}.${year}`;
+}
+
+function formatedDateT(date){
+  const inputDate = new Date(date);
+  const hours = String(inputDate.getHours()).padStart(2, '0');
+  const minutes = String(inputDate.getMinutes()).padStart(2, '0');
+
+  return `${hours}:${minutes}`;
+}
+
 //! События кликов
 //? Добавление контактов в попапе
 add_contact.addEventListener('click',() => {

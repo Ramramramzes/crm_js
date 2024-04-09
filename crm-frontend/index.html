@@ -8,17 +8,18 @@
   <title>CRM</title>
 </head>
 <body>
+  <div class="header">
+    <img src="./img/logo.svg" alt="logo" class="logo">
+    <input class="search_input" type="text">
+  </div>
   <div class="container">
-    <div class="header">
-      <img src="" alt="logo">
-      <input type="text">
-    </div>
+    <span class="title">Клиенты</span>
     <div class="clients">
-      <span class="title">Клиенты</span>
       <ul id="list" class="list">
         <!-- Тут list_item -->
       </ul>
     </div>
+    <button id="add_user_popup">Добавить клиента</button>
   </div>
 
   <div class="add_popup" id="add_popup">
@@ -51,7 +52,6 @@
   </div>
   
 
-  <button id="add_user_popup">Добавить клиента</button>
   <script src="./functions.js"></script>
   <script src="./script.js"></script>
 </body>

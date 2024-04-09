@@ -17,11 +17,19 @@ const list = document.getElementById('list'); //? Основной список
 
         const createDateDiv = document.createElement('div');
         createDateDiv.classList.add('create_date');
-        createDateDiv.textContent = `${allClients[i].createdAt}`;
+        const createdDate = document.createElement('span')
+        const createdTime = document.createElement('span')
+        createdDate.textContent = formatedDateD(`${allClients[i].createdAt}`);
+        createdTime.textContent = formatedDateT(`${allClients[i].createdAt}`);
+        createDateDiv.append(createdDate,createdTime)
 
         const changeDateDiv = document.createElement('div');
         changeDateDiv.classList.add('change_date');
-        changeDateDiv.textContent = `${allClients[i].updatedAt}`;
+        const changeDate = document.createElement('span')
+        const changeTime = document.createElement('span')
+        changeDate.textContent = formatedDateD(`${allClients[i].updatedAt}`);
+        changeTime.textContent = formatedDateT(`${allClients[i].updatedAt}`);
+        changeDateDiv.append(changeDate,changeTime)
 
         const contactsDiv = document.createElement('div');
         contactsDiv.classList.add('contacts');
@@ -67,7 +75,6 @@ const list = document.getElementById('list'); //? Основной список
         })
         contactsDiv.append(openFullContacts)
 
-        //! добавить отображение контактов
         const actionsDiv = document.createElement('div');
         const changeUser = document.createElement('button')
         const deleteUser = document.createElement('button')
@@ -76,7 +83,6 @@ const list = document.getElementById('list'); //? Основной список
         actionsDiv.append(changeUser)
         actionsDiv.append(deleteUser)
         actionsDiv.classList.add('actions');
-        //! добавить две кнопки с привязкой id
         item.appendChild(idDiv);
         item.appendChild(fioDiv);
         item.appendChild(createDateDiv);
