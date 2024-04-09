@@ -227,7 +227,6 @@ async function changeUserFn(id) {
   } catch (err) {
     console.log('Ошибка при получении данных ', err);
   }
-  
 }
 
 //! События кликов
@@ -273,6 +272,9 @@ add_user_popup.addEventListener('click',() => {
   document.getElementById('add_popup').classList.remove('dn')
   document.getElementById('popup_title').textContent = 'Новый клиент'
   document.getElementById('for_id').textContent = ''
+
+  document.getElementById('del_user_add').classList.add('dn')
+  document.getElementById('cancle_add').classList.remove('dn')
 })
 
 //? Кнопка вне попапа то же самое что и отмена ниже

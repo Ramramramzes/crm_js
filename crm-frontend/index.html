@@ -16,15 +16,7 @@
     <div class="clients">
       <span class="title">Клиенты</span>
       <ul id="list" class="list">
-        <!-- <li class="list_item">
-          <div class="id">ID</div>
-          <div class="fio">Фамилия Имя Отчество</div>
-          <div class="create_date">Дата и время создания</div>
-          <div class="create_date">Дата и время создания</div>
-          <div class="change_date">Последние изменения</div>
-          <div class="contacts">Контакты</div>
-          <div class="actions">Действия</div>
-        </li> -->
+        <!-- Тут list_item -->
       </ul>
     </div>
   </div>
@@ -42,7 +34,26 @@
           <button id="add_contact">Добавить контакт</button>
         </div>
         <button id="save_user_add">Сохранить</button>
-        <button id="cancle_add">Отмена</button>
+        <button id="cancle_add" class="cancle_del">Отмена</button>
+        <button id="del_user_add" class="cancle_del">Удалить клиента</button>
+    </div>
+  </div>
+  
+  <div class="add_popup" id="add_popup">
+    <div class="popup">
+      <div><span id="popup_title"></span><span id="for_id"></span></div>
+      <form id="add_user_form" action="#" class="add_user_form">
+        <input id="surname_input_add"type="text" placeholder="Фамилия" required>
+        <input id="name_input_add" type="text" placeholder="Имя" required>
+        <input id="lastname_input_add"type="text" placeholder="Отчество">
+      </form>
+        <div class="contact_inf" id="contact_inf">
+          <div id="contacts_block"></div>
+          <button id="add_contact">Добавить контакт</button>
+        </div>
+        <button id="save_user_add">Сохранить</button>
+        <button id="cancle_add" class="cancle_del">Отмена</button>
+        <button id="del_user_add" class="cancle_del">Удалить клиента</button>
     </div>
   </div>
   

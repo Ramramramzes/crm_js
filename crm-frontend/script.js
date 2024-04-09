@@ -86,6 +86,8 @@ const list = document.getElementById('list'); //? Основной список
 
         changeUser.addEventListener('click',() => {
           changeUserFn(allClients[i].id)
+          document.getElementById('cancle_add').classList.add('dn')
+          document.getElementById('del_user_add').classList.remove('dn')
           document.getElementById('popup_title').textContent = `Изменить данные `
           document.getElementById('for_id').textContent = `ID: ${allClients[i].id}`
         })
