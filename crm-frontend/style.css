@@ -327,11 +327,16 @@ label{
   font-weight:600;
   border: none;
   display: flex;
+  align-items: center;
 }
 
 #add_contact::before {
-  content: url('./img/add_btn.svg');
+  content: '';
+  background-image: url('./img/add_btn.svg');
+  background-size: cover;
   display: inline-block;
+  width: 20px; 
+  height: 20px;
   margin-right: 5px;
 }
 
