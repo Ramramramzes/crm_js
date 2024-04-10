@@ -4,6 +4,13 @@ let filterFioFlag = false;
 let filterCreateFlag = false;
 let filterUpdateFlag = false;
 
+
+
+filterIdFlag = false;
+filterFioFlag = false;
+filterCreateFlag = false;
+filterUpdateFlag = false;
+
 (async () => {
   try {
     
@@ -12,6 +19,9 @@ let filterUpdateFlag = false;
 
     const filterId = document.getElementById('filter_id')
     filterId.addEventListener('click',() => {
+      filterFioFlag = false;
+      filterCreateFlag = false;
+      filterUpdateFlag = false;
       if(!filterIdFlag){
         allClients = allClients.sort((a, b) => parseInt(b.id) - parseInt(a.id));
         list.innerHTML = ''
@@ -27,6 +37,9 @@ let filterUpdateFlag = false;
 
     const filterFio = document.getElementById('filter_fio')
     filterFio.addEventListener('click',() => {
+      filterIdFlag = false;
+      filterCreateFlag = false;
+      filterUpdateFlag = false;
       if(!filterFioFlag){
         allClients = allClients.sort((a, b) => a.surname.localeCompare(b.surname));
         list.innerHTML = ''
@@ -42,6 +55,9 @@ let filterUpdateFlag = false;
 
     const filterCreate = document.getElementById('filter_create')
     filterCreate.addEventListener('click',() => {
+      filterIdFlag = false;
+      filterFioFlag = false;
+      filterUpdateFlag = false;
       if(!filterCreateFlag){
         allClients = allClients.sort((a, b) => {
           return new Date(b.createdAt) - new Date(a.createdAt);
@@ -61,6 +77,9 @@ let filterUpdateFlag = false;
 
     const filterUpdate = document.getElementById('filter_update')
     filterUpdate.addEventListener('click',() => {
+      filterIdFlag = false;
+      filterFioFlag = false;
+      filterCreateFlag = false;
       if(!filterUpdateFlag){
         allClients = allClients.sort((a, b) => {
           return new Date(b.createdAt) - new Date(a.createdAt);
