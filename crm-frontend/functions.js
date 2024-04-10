@@ -92,11 +92,14 @@ function addContact_popup(){
   contactBlock.classList.add('contact_block_add')
   const customSelect = document.createElement('div')
   customSelect.id = `customSelect_${counter}`
+  customSelect.classList.add('select_block')
   const selected = document.createElement('div')
   selected.id = `selected_${counter}`
   selected.textContent = 'Телефон'
+  selected.classList.add('contact_select')
   const customOptions = document.createElement('div')
   customOptions.id = `customOptions_${counter}`
+  customOptions.classList.add('custom_opt')
   options.forEach((el) => {
     const opt = document.createElement('span')
     opt.textContent = el.value
@@ -117,14 +120,16 @@ function addContact_popup(){
   })
 
   const input = document.createElement('input')
+  input.classList.add('input_contact')
   input.type = 'text'
   input.id = `contact_input_${counter}`
   input.placeholder = 'Введите данные контакта'
   input.classList.add('contact_input')
   const delBtn = document.createElement('button')
-  delBtn.textContent = 'x'
   delBtn.id = `del_${contactBlock.id}`
+  delBtn.classList.add('del_btn_popup')
 
+  contactBlock.classList.add('contactBlock')
   contactBlock.append(input)
   contactBlock.append(delBtn)
   const contactInf = document.getElementById('contact_inf')
@@ -201,7 +206,8 @@ async function changeUserFn(id) {
     const sendChange = document.createElement('button')
     sendChange.id = 'change_contact'
     sendChange.textContent = 'Сохранить'
-    document.getElementById('contact_inf').append(sendChange)
+    document.getElementById('popup_btns').append(sendChange)
+
     document.getElementById('save_user_add').classList.add('dn')
 
     sendChange.addEventListener('click',()=> {

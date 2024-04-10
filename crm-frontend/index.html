@@ -24,20 +24,33 @@
 
   <div class="add_popup" id="add_popup">
     <div class="popup">
-      <span class="close" id="close_add">x</span>
-      <div><span id="popup_title"></span><span id="for_id"></span></div>
-      <form id="add_user_form" action="#" class="add_user_form">
-        <input id="surname_input_add"type="text" placeholder="Фамилия" required>
-        <input id="name_input_add" type="text" placeholder="Имя" required>
-        <input id="lastname_input_add"type="text" placeholder="Отчество">
-      </form>
+      <div class="top_part">
+        <span class="close" id="close_add">x</span>
+        <div class="title_block"><span id="popup_title"></span><span id="for_id"></span></div>
+        <form id="add_user_form" action="#" class="add_user_form">
+          <div class="input_container">
+            <label for="surname">Фамилия*</label>
+            <input class="input_add" id="surname_input_add" type="text" placeholder="Фамилия" required name="surname">
+          </div>
+          <div class="input_container">
+            <label for="name">Имя*</label>
+            <input class="input_add" id="name_input_add" type="text" placeholder="Имя" required name="name">
+          </div>
+          <div class="input_container">
+            <label for="lastname">Отчество</label>
+            <input class="input_add" id="lastname_input_add"type="text" placeholder="Отчество" name="lastname">
+          </div>
+        </form>
+      </div>
         <div class="contact_inf" id="contact_inf">
           <div id="contacts_block"></div>
           <button id="add_contact">Добавить контакт</button>
         </div>
-        <button id="save_user_add">Сохранить</button>
-        <button id="cancle_add" class="cancle_del">Отмена</button>
-        <button id="del_user_add" class="cancle_del">Удалить клиента</button>
+        <div id="popup_btns" class="popup_btns">
+          <button id="save_user_add">Сохранить</button>
+          <button id="cancle_add" class="cancle_del">Отмена</button>
+          <button id="del_user_add" class="cancle_del">Удалить клиента</button>
+        </div>
     </div>
   </div>
 

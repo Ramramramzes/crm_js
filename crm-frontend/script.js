@@ -99,6 +99,9 @@ const list = document.getElementById('list'); //? Основной список
           document.getElementById('del_user_add').classList.remove('dn')
           document.getElementById('popup_title').textContent = `Изменить данные `
           document.getElementById('for_id').textContent = `ID: ${allClients[i].id}`
+          if(document.querySelectorAll('.contact_block_add').length <= 9){
+            document.getElementById('add_contact').classList.remove('dn')
+          }
         })
 
         deleteUser.addEventListener('click',() => {

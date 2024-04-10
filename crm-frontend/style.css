@@ -40,14 +40,21 @@ body{
 }
 
 .popup{
+  position: relative;
   background-color: #fff;
   width: 40%;
-  height: 50vh;
+  height: auto;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .add_user_form{
   display: flex;
   flex-direction: column;
+  gap: 15px;
+  padding-bottom: 25px;
 }
 
 .dn{
@@ -186,6 +193,169 @@ opacity: 1;
   border-right-width: 5px;
   border-top: 10px solid #333;
   position: absolute;
-
   z-index: 1;
+}
+
+/*! POPUP  */
+.top_part{
+  width: 90%;
+}
+#popup_title{
+  display: inline-block;
+  margin-top: 25px;
+  margin-right: 5px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+label{
+  font-size: 10px;
+  color: #B0B0B0;
+}
+
+.close{
+  position: absolute;
+  top: 1%;
+  right: 2%;
+}
+
+#for_id{
+  font-size: 12px;
+  color: #B0B0B0;
+}
+
+.title_block{
+  margin-bottom: 3%;
+}
+
+.input_add{
+  border:none;
+  border-bottom: 1px solid #C8C5D1;
+  font-weight: bold;
+  padding-bottom: 5px;
+}
+
+.input_add:focus,
+.input_contact:focus{
+  outline: none;
+}
+
+.input_container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact_inf{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #F4F3F6;
+  padding: 10px 0px;
+}
+
+.input_contact{
+  border: 1px solid #C8C5D1;
+  background-color: transparent;
+  width: 100%;
+  padding-left: 5%;
+}
+
+.contactBlock{
+  display: flex;
+  align-items: stretch;
+}
+.contact_select{
+  padding: 10px 20px;
+  width: 125px;
+  border: 1px solid #C8C5D1;
+  border-right: none;
+  background-color: #E7E5EB;
+  width: 100px;
+}
+.select_block{
+  position: relative;
+  cursor: pointer;
+}
+.custom_opt{
+  position: absolute;
+  z-index: 3;
+  left: 0px;
+  top: 100%;
+  width: 100%;
+  display: flex;
+  border: 1px solid #C8C5D1;
+  flex-direction: column;
+  background-color: #F4F3F6;
+  cursor: pointer;
+}
+
+.custom_opt span{
+  padding: 10px 15px;
+  transition: 200ms linear;
+  cursor: pointer;
+}
+.custom_opt span:hover{
+  transition: 200ms linear;
+  padding: 10px 15px;
+  padding-left: 20px;
+  cursor: pointer;
+}
+
+.del_btn_popup{
+  background-color: #E7E5EB;
+  border: 1px solid #C8C5D1;
+  border-left: none;
+  width: 7%;
+  background-image: url('./img/del.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 60%;
+}
+
+#contacts_block{
+  width: 80%;
+}
+
+.contact_block_add{
+  margin-bottom: 3%;
+}
+
+#add_contact{
+  background-color: transparent;
+  font-weight:600;
+  border: none;
+  display: flex;
+}
+
+#add_contact::before {
+  content: url('./img/add_btn.svg');
+  display: inline-block;
+  margin-right: 5px;
+}
+
+#change_contact{ 
+  border: none;
+  padding: 15px 25px;
+  color: #fff;
+  background-color: #9873FF;
+  cursor: pointer;
+}
+
+.popup_btns{
+  display: flex;
+  margin-top: 15px;
+  flex-direction: column-reverse;
+  padding-bottom: 25px;
+}
+
+#del_user_add{
+  font-size: 12px;
+  font-weight: 400;
+  cursor: pointer;
+  border: none;
+  border-bottom: .5px solid #333;
+  background-color: #fff;
+  margin-top: 10px;
 }
