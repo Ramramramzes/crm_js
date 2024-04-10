@@ -7,6 +7,8 @@ const addPopup = document.getElementById('add_popup')
 const delPopup = document.getElementById('del_popup')
 const delBtnInChange = document.getElementById('del_user_add')
 const close_add = document.getElementById('close_add')
+const close_del_popup = document.getElementById('close_del_popup')
+
 
 addPopup.classList.add('dn') //? Скрываем сразу попап
 delPopup.classList.add('dn') //? Скрываем сразу попап
@@ -116,8 +118,10 @@ function addContact_popup(){
 
   customOptions.classList.toggle('dn')
 
+  selected.classList.add('backDrop')
   selected.addEventListener('click', () => {
     customOptions.classList.toggle('dn')
+    selected.classList.toggle('backDropUp')
   })
 
   const input = document.createElement('input')
@@ -350,6 +354,14 @@ delPopup.addEventListener('click',(event) => {
 })
 
 close_add.addEventListener('click', () => {
+  closeAddPopup()
+  if(document.getElementById('change_contact')){
+    document.getElementById('change_contact').remove()
+  }
+})
+
+
+close_del_popup.addEventListener('click', () => {
   closeAddPopup()
   if(document.getElementById('change_contact')){
     document.getElementById('change_contact').remove()

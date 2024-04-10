@@ -348,7 +348,8 @@ label{
 }
 
 #change_contact,
-#save_user_add{ 
+#save_user_add,
+.del_btn_del_popup{ 
   border: none;
   padding: 15px 25px;
   color: #fff;
@@ -365,7 +366,8 @@ label{
 }
 
 #del_user_add,
-#cancle_add{
+#cancle_add,
+.cancle_del{
   font-size: 12px;
   font-weight: 400;
   cursor: pointer;
@@ -373,6 +375,10 @@ label{
   border-bottom: .5px solid #333;
   background-color: #fff;
   margin-top: 10px;
+}
+
+#del_cancel{
+  width: 70%;
 }
 
 #cancle_add{
@@ -434,4 +440,47 @@ label{
   cursor: pointer;
   display: flex;
   align-items: center;
+}
+
+.popup_del{
+  min-height: 20vh;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.del_title{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.del_text{
+  width: 40%;
+  text-align: center;
+}
+
+.del_btns{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.backDrop{
+  background-image: url('./img/drop.svg');
+  background-size: 10px 10px;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: 90%;
+  display: inline-block;
+}
+
+.backDropUp{
+  background-image: url('./img/dropUp.svg');
+  background-size: 10px 10px;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: 90%;
+  display: inline-block;
+  
 }
