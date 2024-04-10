@@ -1,10 +1,15 @@
 const list = document.getElementById('list'); //? Основной список
 let filterIdFlag = false;
+let filterFioFlag = false;
+let filterCreateFlag = false;
+let filterUpdateFlag = false;
+
 (async () => {
   try {
     
     let allClients = await getClients();
     renderList(allClients)
+
     const filterId = document.getElementById('filter_id')
     filterId.addEventListener('click',() => {
       if(!filterIdFlag){
@@ -16,6 +21,59 @@ let filterIdFlag = false;
         allClients = allClients.sort((a, b) => parseInt(a.id) - parseInt(b.id));
         list.innerHTML = ''
         filterIdFlag = !filterIdFlag
+        renderList(allClients)
+      }
+    })
+
+    const filterFio = document.getElementById('filter_fio')
+    filterFio.addEventListener('click',() => {
+      if(!filterFioFlag){
+        allClients = allClients.sort((a, b) => a.surname.localeCompare(b.surname));
+        list.innerHTML = ''
+        filterFioFlag = !filterFioFlag
+        renderList(allClients)
+      }else{
+        allClients = allClients.sort((a, b) => b.surname.localeCompare(a.surname));
+        list.innerHTML = ''
+        filterFioFlag = !filterFioFlag
+        renderList(allClients)
+      }
+    })
+
+    const filterCreate = document.getElementById('filter_create')
+    filterCreate.addEventListener('click',() => {
+      if(!filterCreateFlag){
+        allClients = allClients.sort((a, b) => {
+          return new Date(b.createdAt) - new Date(a.createdAt);
+        });
+        list.innerHTML = ''
+        filterCreateFlag = !filterCreateFlag
+        renderList(allClients)
+      }else{
+        allClients = allClients.sort((a, b) => {
+          return new Date(a.createdAt) - new Date(b.createdAt);
+        });
+        list.innerHTML = ''
+        filterCreateFlag = !filterCreateFlag
+        renderList(allClients)
+      }
+    })
+
+    const filterUpdate = document.getElementById('filter_update')
+    filterUpdate.addEventListener('click',() => {
+      if(!filterUpdateFlag){
+        allClients = allClients.sort((a, b) => {
+          return new Date(b.createdAt) - new Date(a.createdAt);
+        });
+        list.innerHTML = ''
+        filterUpdateFlag = !filterUpdateFlag
+        renderList(allClients)
+      }else{
+        allClients = allClients.sort((a, b) => {
+          return new Date(a.createdAt) - new Date(b.createdAt);
+        });
+        list.innerHTML = ''
+        filterUpdateFlag = !filterUpdateFlag
         renderList(allClients)
       }
     })
