@@ -6,6 +6,7 @@ const add_user_popup = document.getElementById('add_user_popup') //? Кнопк�
 const addPopup = document.getElementById('add_popup')
 const delPopup = document.getElementById('del_popup')
 const delBtnInChange = document.getElementById('del_user_add')
+const close_add = document.getElementById('close_add')
 
 addPopup.classList.add('dn') //? Скрываем сразу попап
 delPopup.classList.add('dn') //? Скрываем сразу попап
@@ -348,4 +349,9 @@ delPopup.addEventListener('click',(event) => {
   }
 })
 
-
+close_add.addEventListener('click', () => {
+  closeAddPopup()
+  if(document.getElementById('change_contact')){
+    document.getElementById('change_contact').remove()
+  }
+})

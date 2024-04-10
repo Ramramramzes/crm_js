@@ -217,6 +217,7 @@ label{
   position: absolute;
   top: 1%;
   right: 2%;
+  cursor: pointer;
 }
 
 #for_id{
@@ -340,7 +341,8 @@ label{
   margin-right: 5px;
 }
 
-#change_contact{ 
+#change_contact,
+#save_user_add{ 
   border: none;
   padding: 15px 25px;
   color: #fff;
@@ -352,10 +354,12 @@ label{
   display: flex;
   margin-top: 15px;
   flex-direction: column-reverse;
-  padding-bottom: 25px;
+  padding-bottom: 15px;
+  align-items: center;
 }
 
-#del_user_add{
+#del_user_add,
+#cancle_add{
   font-size: 12px;
   font-weight: 400;
   cursor: pointer;
@@ -363,4 +367,9 @@ label{
   border-bottom: .5px solid #333;
   background-color: #fff;
   margin-top: 10px;
+}
+
+#cancle_add{
+
+  width: 50%;
 }
