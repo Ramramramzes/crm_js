@@ -19,6 +19,7 @@ body{
 .list_item{
   display: flex;
   justify-content: space-between;
+  height: 3vh;
 }
 .id{
   width: 15%;
@@ -117,22 +118,31 @@ body{
 }
 
 .contacts{
-  width: 10%;
+  width: 9%;
+  gap: 7px;
   display: flex;
   flex-wrap: wrap;
   justify-content: start;
 }
-
-.contact_img_block:nth-child(1),
-.contact_img_block:nth-child(2),
-.contact_img_block:nth-child(3),
-.contact_img_block:nth-child(4){
-  margin-right: 7px;
+.contact_img_block{
+  position: relative;
+}
+.contact_img_block img{
+  transition: 300ms;
+  opacity: .7;
+  cursor: pointer;
 }
 
-.margin_for_all_contacts{
-  margin-right: 7px;
+.contact_img_block img:hover{
+  transition: 300ms;
+  opacity: 1;
 }
+
+.title_of_contacts img{
+opacity: 1;
+}
+
+
 
 .contacts span{
   width: 15px;
@@ -145,4 +155,37 @@ body{
   border-radius: 100%;
   font-size: 8px;
   cursor: pointer;
+}
+
+.title_of_contacts{
+  width: fit-content;
+  color: #fff;
+  font-size: 12px;
+  background-color: #333;
+  padding: 7px 14px;
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.hover_retangle{
+  opacity: 1;
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  
+}
+
+.test{
+  width: 0;
+  height: 0;
+  border: 0 solid transparent;
+  border-left-width: 5px;
+  border-right-width: 5px;
+  border-top: 10px solid #333;
+  position: absolute;
+
+  z-index: 1;
 }

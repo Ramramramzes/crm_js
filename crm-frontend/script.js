@@ -55,32 +55,29 @@ const list = document.getElementById('list'); //? Основной список
           if(allClients[i].contacts[j].type === 'Другое'){
             img.src = './img/other.svg'
           }
-
           if(j >= 4){
             img.classList.add('dn')
           }
           
+          const content = document.createElement('div')
+          content.classList.add('title_of_contacts')
+          content.textContent = `${allClients[i].contacts[j].value}`
+          const retangle = document.createElement('div')
+          retangle.classList.add('hover_retangle','test')
+          content.append(retangle)
+
+          contact_img_block.append(content)
+          
+          content.classList.add('dn')
+          contact_img_block.addEventListener('mouseenter',() => {
+            content.classList.remove('dn')
+          })
+          contact_img_block.addEventListener('mouseleave',() => {
+            content.classList.add('dn')
+          })
           contactsDiv.append(contact_img_block)
         }
         
-        const openFullContacts = document.createElement('span')
-        if(allClients[i].contacts.length > 4){
-          openFullContacts.textContent = `+${allClients[i].contacts.length - 4}`
-        }
-        
-        openFullContacts.addEventListener('click',() => {
-          const contactImages = document.querySelectorAll(`.list_item:nth-child(${i + 1}) .contact_img_block img`);
-          const spans = document.querySelectorAll(`.list_item:nth-child(${i + 1}) .contacts span`);
-          spans[0].classList.add('dn')
-          for (let j = 4; j < allClients[i].contacts.length; j++) {
-            contactImages[j].classList.remove('dn');
-            contactImages[j].classList.add('margin_for_all_contacts')
-          }
-        });    
-        
-        openFullContacts.textContent === '' ? openFullContacts.classList.add('dn') : false //? скрываем пустой шарик
-        contactsDiv.append(openFullContacts)
-
         const actionsDiv = document.createElement('div');
         const changeUser = document.createElement('button')
         const deleteUser = document.createElement('button')
@@ -111,6 +108,29 @@ const list = document.getElementById('list'); //? Основной список
           })
         })
         list.append(item);
+
+        for (let l = 4; l < document.querySelectorAll('.list_item')[i].querySelectorAll('.contact_img_block').length; l++) {
+          document.querySelectorAll('.list_item')[i].querySelectorAll('.contact_img_block')[l].classList.add('dn');
+        }
+
+        const openFullContacts = document.createElement('span')
+        if(allClients[i].contacts.length > 4){
+          openFullContacts.textContent = `+${allClients[i].contacts.length - 4}`
+        }
+
+        openFullContacts.addEventListener('click',() => {
+          const contactImages = document.querySelectorAll(`.list_item:nth-child(${i + 1}) .contact_img_block img`);
+          const spans = document.querySelectorAll(`.list_item:nth-child(${i + 1}) .contacts span`);
+          spans[0].classList.add('dn')
+          document.querySelectorAll('.list_item')[i].querySelectorAll('.contact_img_block').forEach(el => el.classList.remove('dn'))
+          for (let j = 4; j < allClients[i].contacts.length; j++) {
+            contactImages[j].classList.remove('dn');
+            contactImages[j].classList.add('margin_for_all_contacts')
+          }
+        });    
+
+        openFullContacts.textContent === '' ? openFullContacts.classList.add('dn') : false //? скрываем пустой шарик
+        contactsDiv.append(openFullContacts)
       }
     }
   } catch (err) {
