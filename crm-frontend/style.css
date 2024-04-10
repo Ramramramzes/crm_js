@@ -3,9 +3,12 @@ body{
   color: #333333;
   font-size: 14px;
 }
-
+.container{
+  padding-bottom: 25px;
+}
 .add_popup{
   position: fixed;
+  overflow: scroll;
   top: 0;
   left: 0;
   width: 100%;
@@ -40,14 +43,15 @@ body{
 }
 
 .popup{
+  margin-top: 5%;
   position: relative;
   background-color: #fff;
   width: 40%;
-  height: auto;
-  min-height: 50vh;
+  min-height: 55vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .add_user_form{
@@ -215,8 +219,8 @@ label{
 
 .close{
   position: absolute;
-  top: 1%;
-  right: 2%;
+  top: 15px;
+  right: 15px;
   cursor: pointer;
 }
 
@@ -324,11 +328,13 @@ label{
 }
 
 #add_contact{
-  background-color: transparent;
+  width: 100%;
   font-weight:600;
   border: none;
   display: flex;
   align-items: center;
+  background-color: transparent;
+  justify-content: center;
 }
 
 #add_contact::before {
@@ -372,4 +378,31 @@ label{
 #cancle_add{
 
   width: 50%;
+}
+
+.main_btn{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+#add_user_popup::before {
+  content: '';
+  background-image: url('./img/man.svg');
+  background-size: cover;
+  display: inline-block;
+  width: 22px; 
+  height: 16px;
+  margin-right: 5px; 
+}
+
+#add_user_popup{
+  color: #9873FF;
+  background-color: transparent;
+  border: 1px solid #9873FF;
+  display: flex;
+  align-items: center;
+  padding: 15px 25px;
 }
