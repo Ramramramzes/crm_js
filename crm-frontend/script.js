@@ -82,7 +82,9 @@ const list = document.getElementById('list'); //? Основной список
         const changeUser = document.createElement('button')
         const deleteUser = document.createElement('button')
         changeUser.textContent = 'Изменить'
+        changeUser.classList.add('change_btn')
         deleteUser.textContent = 'Удалить'
+        deleteUser.classList.add('del_btn')
         actionsDiv.append(changeUser)
         actionsDiv.append(deleteUser)
         actionsDiv.classList.add('actions');

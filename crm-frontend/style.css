@@ -406,3 +406,32 @@ label{
   align-items: center;
   padding: 15px 25px;
 }
+
+.change_btn::before{
+  content: '';
+  background-image: url('./img/pen.svg');
+  background-size: cover;
+  display: inline-block;
+  width: 12px; 
+  height: 12px;
+  margin-right: 5px; 
+}
+
+.del_btn::before{
+  content: '';
+  background-image: url('./img/del_red.svg');
+  background-size: cover;
+  display: inline-block;
+  width: 12px; 
+  height: 12px;
+  margin-right: 5px;
+}
+
+.change_btn,
+.del_btn{
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
