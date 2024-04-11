@@ -483,3 +483,87 @@ label{
   background-position-x: 90%;
   display: inline-block;
 }
+
+.filter_block{
+  display: flex;
+  gap: 14%;
+  padding: 0px 40px;
+}
+
+.filer_time_block{
+  display: flex;
+  gap: 15%;
+}
+.filer_time_block button{
+  width: 35%;
+}
+.filter_block button{
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+
+.filter_block button::after{
+  content: '';
+  margin-left: 5px;
+  background-color: transparent;
+  background-image: url('./img/arrDown.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+  width: 12px; 
+  height: 12px;
+}
+
+.filter_block button:nth-child(2)::after{
+  content: '';
+  margin-left: 5px;
+  width: 100%;
+  background-color: transparent;
+  background-image: url('./img/arrowDownLet.svg');
+  background-size: cover;
+  display: inline-block;
+  width: 36px; 
+  height: 12px;
+}
+
+.upImg::after{
+  background-image: url('./img/arrUp.svg') !important;
+}
+
+.upImgLet::after{
+  background-image: url('./img/arrowUpLet.svg') !important;
+}
+
+.filer_time_block button:last-child::after{
+  content: '';
+  margin-left: 5px;
+  background-color: transparent;
+  background-image: url('./img/arrDown.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+  width: 20px; 
+  height: 20px;
+}
+
+.filer_time_block button::after{
+  content: '';
+  margin-left: 5px;
+  background-color: transparent;
+  background-image: url('./img/arrDown.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+  width: 20px; 
+  height: 20px;
+}
+
+.filter_block button{
+  background-color: transparent;
+  border: none;
+  color: #B0B0B0;
+}

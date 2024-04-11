@@ -11,6 +11,8 @@ filterFioFlag = false;
 filterCreateFlag = false;
 filterUpdateFlag = false;
 
+
+
 (async () => {
   try {
     
@@ -22,12 +24,15 @@ filterUpdateFlag = false;
       filterFioFlag = false;
       filterCreateFlag = false;
       filterUpdateFlag = false;
+      freeStyleFilter()
       if(!filterIdFlag){
+        event.target.classList.remove('upImg')
         allClients = allClients.sort((a, b) => parseInt(b.id) - parseInt(a.id));
         list.innerHTML = ''
         filterIdFlag = !filterIdFlag
         renderList(allClients)
       }else{
+        event.target.classList.add('upImg')
         allClients = allClients.sort((a, b) => parseInt(a.id) - parseInt(b.id));
         list.innerHTML = ''
         filterIdFlag = !filterIdFlag
@@ -40,12 +45,15 @@ filterUpdateFlag = false;
       filterIdFlag = false;
       filterCreateFlag = false;
       filterUpdateFlag = false;
+      freeStyleFilter()
       if(!filterFioFlag){
+        event.target.classList.remove('upImgLet')
         allClients = allClients.sort((a, b) => a.surname.localeCompare(b.surname));
         list.innerHTML = ''
         filterFioFlag = !filterFioFlag
         renderList(allClients)
       }else{
+        event.target.classList.add('upImgLet')
         allClients = allClients.sort((a, b) => b.surname.localeCompare(a.surname));
         list.innerHTML = ''
         filterFioFlag = !filterFioFlag
@@ -58,7 +66,9 @@ filterUpdateFlag = false;
       filterIdFlag = false;
       filterFioFlag = false;
       filterUpdateFlag = false;
+      freeStyleFilter()
       if(!filterCreateFlag){
+        event.target.classList.remove('upImg')
         allClients = allClients.sort((a, b) => {
           return new Date(b.createdAt) - new Date(a.createdAt);
         });
@@ -66,6 +76,7 @@ filterUpdateFlag = false;
         filterCreateFlag = !filterCreateFlag
         renderList(allClients)
       }else{
+        event.target.classList.add('upImg')
         allClients = allClients.sort((a, b) => {
           return new Date(a.createdAt) - new Date(b.createdAt);
         });
@@ -80,7 +91,9 @@ filterUpdateFlag = false;
       filterIdFlag = false;
       filterFioFlag = false;
       filterCreateFlag = false;
+      freeStyleFilter()
       if(!filterUpdateFlag){
+        event.target.classList.remove('upImg')
         allClients = allClients.sort((a, b) => {
           return new Date(b.createdAt) - new Date(a.createdAt);
         });
@@ -88,6 +101,7 @@ filterUpdateFlag = false;
         filterUpdateFlag = !filterUpdateFlag
         renderList(allClients)
       }else{
+        event.target.classList.add('upImg')
         allClients = allClients.sort((a, b) => {
           return new Date(a.createdAt) - new Date(b.createdAt);
         });

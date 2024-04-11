@@ -270,6 +270,13 @@ function formatedDateT(date){
   return `${hours}:${minutes}`;
 }
 
+function freeStyleFilter() {
+  document.querySelectorAll('.upImg').forEach(function(element) {
+    element.classList.remove('upImg');
+  });
+  document.getElementById('filter_fio').classList.remove('upImgLet')
+}
+
 //! События кликов
 //? Добавление контактов в попапе
 add_contact.addEventListener('click',() => {
