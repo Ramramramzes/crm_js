@@ -8,6 +8,7 @@ const delPopup = document.getElementById('del_popup')
 const delBtnInChange = document.getElementById('del_user_add')
 const close_add = document.getElementById('close_add')
 const close_del_popup = document.getElementById('close_del_popup')
+const search_input = document.getElementById('search_input')
 
 
 addPopup.classList.add('dn') //? Скрываем сразу попап
@@ -374,3 +375,5 @@ close_del_popup.addEventListener('click', () => {
     document.getElementById('change_contact').remove()
   }
 })
+
+

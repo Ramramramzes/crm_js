@@ -15,8 +15,27 @@ filterUpdateFlag = false;
 
 (async () => {
   try {
-    
     let allClients = await getClients();
+
+    let time;
+    search_input.addEventListener('input', function(event) {
+      if (time) {
+          clearTimeout(time);
+      }
+      time = setTimeout(function() {
+          const searchText = event.target.value.toLowerCase();
+  
+          const filteredClients = allClients.filter(el =>
+              el.name.toLowerCase().includes(searchText) ||
+              el.surname.toLowerCase().includes(searchText) ||
+              el.lastName.toLowerCase().includes(searchText) ||
+              el.id.includes(searchText)
+          );
+          list.innerHTML = '';
+          renderList(filteredClients);
+      }, 300);
+    });
+  
     renderList(allClients)
 
     const filterId = document.getElementById('filter_id')
