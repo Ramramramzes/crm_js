@@ -89,6 +89,14 @@ body{
   border: 1px solid rgba(0, 0, 0, .2)
 }
 
+.search_input:focus{
+  outline: none;
+}
+
+.search_input::placeholder{
+  color: #B0B0B0;
+}
+
 .title{
   display: block;
   padding: 40px;
@@ -488,6 +496,7 @@ label{
   display: flex;
   gap: 14%;
   padding: 0px 40px;
+  
 }
 
 .filer_time_block{
@@ -567,3 +576,26 @@ label{
   border: none;
   color: #B0B0B0;
 }
+
+@media (max-width:1024px) {
+  .filter_block{
+    gap: 10%;
+    font-size: 12px;
+  }
+  .filer_time_block{
+    gap: 12%;
+  }
+  .actions{
+    width: 20%;
+  }
+  .del_text{
+    width: 60%;
+  }
+  #del_cancel{
+    width: 45%;
+  }
+  #cancle_add{
+    width: 45%;
+  }
+}
+
