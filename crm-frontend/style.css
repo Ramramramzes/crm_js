@@ -599,3 +599,50 @@ label{
   }
 }
 
+@media (max-width: 768px) {
+  .list{
+    padding: 0px;
+  }
+  
+  .list_item{
+    gap: 2%;
+  }
+
+  .filter_block{
+    gap: 5%;
+  }
+
+  .id{
+    width: 13%;
+  }
+
+  .fio{
+    width: 25%;
+  }
+
+  .create_date,
+  .change_date{
+    flex-direction: column;
+    width: 10%
+  }
+
+  .contacts{
+    width: 18%;
+  }
+
+  .actions{
+    width: 15%;
+    gap: 5px;
+    flex-direction: column;
+  }
+
+  .popup{
+    width: 60%;
+  }
+  .del_btn_popup{
+    width: 15%;
+  }
+  #contacts_block{
+    width: 90%;
+  }
+}
