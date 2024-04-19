@@ -21,7 +21,8 @@ let deleteId = 0;
 
 addPopup.classList.add('dn') //? Скрываем сразу попап
 delPopup.classList.add('dn') //? Скрываем сразу попап
-
+addPopup.removeAttribute('style')
+delPopup.removeAttribute('style')
 //? Получение массива пользователей
 async function getClients() {
   try {
