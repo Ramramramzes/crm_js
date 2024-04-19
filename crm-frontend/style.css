@@ -4,9 +4,16 @@ body{
   font-size: 14px;
   background-color: #F5F5F5;
 }
+#load{
+  display: block;
+  text-align: center;
+  padding: 20px 0px;
+}
+
 .container{
   padding-bottom: 25px;
 }
+
 .add_popup{
   position: fixed;
   overflow: scroll;

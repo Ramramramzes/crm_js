@@ -2,6 +2,7 @@
 
 (async () => {
   try {
+    
     let allClients = await getClients();
 
     let time;
@@ -23,8 +24,15 @@
           renderList(filteredClients);
       }, 300);
     });
-  
-    renderList(allClients)
+    const load = document.createElement('p')
+    load.id = 'load'
+    load.textContent = 'загрузка...'
+    list.append(load)
+    setTimeout(async() => {
+      load.remove()
+      renderList(allClients)
+    }, 1000);
+
 
     const filterId = document.getElementById('filter_id')
     filterId.addEventListener('click',async function(){
