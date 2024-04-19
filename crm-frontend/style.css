@@ -11,6 +11,7 @@ body{
 }
 
 .container{
+  width: inherit;
   padding-bottom: 25px;
 }
 
@@ -452,7 +453,7 @@ label{
 }
 
 .popup_del{
-  min-height: 20vh;
+  min-height: 150px;
   display: flex;
   justify-content: space-between;
   padding-top: 25px;
@@ -598,7 +599,15 @@ label{
   color: #F06A4D;
 }
 
+
+
 @media (max-width:1024px) {
+  .container{
+    overflow: scroll;
+  }
+  .clients{
+    width: 1024px;
+  }
   .filter_block{
     gap: 8%;
     font-size: 12px;
@@ -637,6 +646,13 @@ label{
 }
 
 @media (max-width: 768px) {
+  
+  .container{
+    overflow: scroll;
+  }
+  .clients{
+    width: 768px;
+  }
   .list{
     padding: 0px;
   }
@@ -685,10 +701,13 @@ label{
 }
 
 @media (max-width: 320px) {
+  
   .container{
     overflow: scroll;
+    padding-bottom: 70px;
   }
   .clients{
+    width: 768px;
     position: relative;
   }
   .list{
@@ -717,11 +736,7 @@ label{
     width: 100%;
   }
   .popup_del{
-    height: 25vh;
-  }
-
-  .clients{
-    width: 768px;
+    min-height: 150px;
   }
 
   .filter_block{
@@ -731,5 +746,26 @@ label{
   .filer_time_block{
     gap: 5%;
   }
+  .title{
+    padding: 20px 0px;
+  }
 }
 
+@media (max-width: 1900px){
+  .contacts{
+    width: 7%;
+  }
+  .filter_block{
+    gap: 16%;
+  }
+  
+}
+
+@media (max-width: 1400px){
+  .contacts{
+    width: 7%;
+  }
+  .filter_block{
+    gap: 13%;
+  }
+}
