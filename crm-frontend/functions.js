@@ -132,6 +132,7 @@ function addContact_popup(){
     opt.addEventListener('click',() => {
       selected.textContent = opt.textContent
       customOptions.classList.toggle('dn')
+      selected.classList.remove('backDropUp')
     })
     customOptions.append(opt)
   })
@@ -355,7 +356,9 @@ add_user_popup.addEventListener('click',() => {
   document.getElementById('cancle_add').classList.remove('dn')
   document.getElementById('save_user_add').classList.remove('dn')
   
-  document.getElementById('change_contact').remove()
+  if(document.getElementById('change_contact')){
+    document.getElementById('change_contact').remove()
+  }
 })
 
 //? Кнопка вне попапа то же самое что и отмена ниже
