@@ -234,8 +234,8 @@ async function changeUserFn(id) {
     }
 
 
-    if(document.querySelectorAll('.change_contact').length > 1){
-      for (let i = 1; i < document.querySelectorAll('.change_contact').length; i++) {
+    if(document.querySelectorAll('.change_contact').length > 0){
+      for (let i = 0; i < document.querySelectorAll('.change_contact').length; i++) {
         document.querySelectorAll('.change_contact')[i].remove()
       }
     }
