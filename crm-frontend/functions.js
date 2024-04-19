@@ -9,6 +9,7 @@ const delBtnInChange = document.getElementById('del_user_add')
 const close_add = document.getElementById('close_add')
 const close_del_popup = document.getElementById('close_del_popup')
 const search_input = document.getElementById('search_input')
+const errorArr = [] 
 
 const list = document.getElementById('list'); //? Основной список
 let filterIdFlag = false;
@@ -34,29 +35,33 @@ async function getClients() {
   }
 }
 //? Запись объекта пользователя в базу
-async function addContact(client){
-  try{
-    fetch(`http://localhost:3000/api/clients`,{
+async function addContact(client) {
+  while(errorArr.length != 0){
+    errorArr.pop()
+  }
+  try {
+    const res = await fetch(`http://localhost:3000/api/clients`, {
       method: 'POST',
       body: JSON.stringify(client),
-    })
-    .then(resp => {
-      if(!resp.ok){
-        throw new Error('Ошибка запроса')
-      }else{
-        return resp.json()
-      }
-    })
-    .then((client) => console.log(`Клиент ${client.name} успешно добавлен`))
-    .then(async() =>{
-      const allClients = await getClients()
-      list.innerHTML = ''
-      await renderList(allClients)
-    })
-  } catch (err){
-    console.log('Ошибка запроса catch ',err)
+    });
+
+    const data = await res.json();
+    console.log(data.errors);
+    if (data.errors) {
+      data.errors.forEach(el => {
+        errorArr.push(el)
+      });
+    } else {
+      console.log(`Клиент ${data.name} успешно добавлен`);
+      const allClients = await getClients();
+      list.innerHTML = '';
+      await renderList(allClients);
+    }
+  } catch (err) {
+    console.log('Ошибка запроса catch ', err);
   }
 }
+
 
 //? Запись объекта пользователя в базу
 async function sendChangeContact(client,id){
@@ -326,7 +331,6 @@ save_user_add.addEventListener('click',async () => {
   const nameInput = document.getElementById('name_input_add')
   const lastNameInput = document.getElementById('lastname_input_add')
   
-  if(surnameInput.value.trim() != '' && nameInput.value.trim() != ''){
     dataForSend.name = nameInput.value
     dataForSend.surname = surnameInput.value
     dataForSend.lastName = lastNameInput.value
@@ -341,9 +345,31 @@ save_user_add.addEventListener('click',async () => {
         })
       }
     }
+
     await addContact(dataForSend)
-    closeAddPopup()
-  }
+    if(errorArr.length === 0){
+      closeAddPopup()
+    }else{
+      const errBlocks = document.querySelectorAll('.errBlock');
+      errBlocks.forEach(errBlock => {
+          errBlock.remove();
+      });
+      const errBlock = document.createElement('div')
+      errBlock.classList.add('errBlock')
+      const nameError = document.createElement('div')
+      const surNameError = document.createElement('div')
+      errorArr.forEach(el => {
+        if(el.field === 'name'){
+          nameError.textContent = el.message
+          errBlock.append(nameError)
+        } 
+        if(el.field === 'surname'){
+          surNameError.textContent = el.message
+          errBlock.append(surNameError)
+        }
+      });
+      document.getElementById('popup_btns').append(errBlock)  
+    }
 })
 
 add_user_popup.addEventListener('click',() => {
