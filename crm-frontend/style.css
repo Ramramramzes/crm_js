@@ -121,10 +121,6 @@ body{
   color: #B0B0B0;
 }
 
-.fio{
-
-}
-
 .create_date, .change_date{
   width: 9%;
   display: flex;
@@ -160,8 +156,6 @@ body{
 .title_of_contacts img{
 opacity: 1;
 }
-
-
 
 .contacts span{
   width: 15px;
@@ -576,6 +570,27 @@ label{
   color: #B0B0B0;
 }
 
+.errors{
+  color: #F06A4D;
+  font-size: 10px;
+}
+
+.errBlock{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5%;
+}
+
+.errBorder{
+  border-bottom: 1px solid #F06A4D;
+}
+
+.errColor{
+  color: #F06A4D;
+}
+
 @media (max-width:1024px) {
   .filter_block{
     gap: 8%;
@@ -710,3 +725,4 @@ label{
     gap: 5%;
   }
 }
+

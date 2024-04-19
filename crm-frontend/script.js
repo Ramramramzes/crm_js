@@ -5,7 +5,8 @@
     let allClients = await getClients();
 
     let time;
-    search_input.addEventListener('input', function(event) {
+    search_input.addEventListener('input', async function(event) {
+      let allClients = await getClients();
       if (time) {
           clearTimeout(time);
       }

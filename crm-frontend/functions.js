@@ -195,6 +195,14 @@ function closeAddPopup(){
     }
   }
   addPopup.classList.add('dn')
+  nameInput.classList.remove('errBorder')
+  surnameInput.classList.remove('errBorder')
+  document.getElementById('surname_label').classList.remove('errColor')
+  document.getElementById('name_label').classList.remove('errColor')
+  const errBlocks = document.querySelectorAll('.errBlock');
+  errBlocks.forEach(errBlock => {
+      errBlock.remove();
+  });
 }
 
 async function getUser(id){
@@ -358,12 +366,24 @@ save_user_add.addEventListener('click',async () => {
       errBlock.classList.add('errBlock')
       const nameError = document.createElement('div')
       const surNameError = document.createElement('div')
+      nameError.classList.add('errors')
+      surNameError.classList.add('errors')
+      nameInput.classList.remove('errBorder')
+      surnameInput.classList.remove('errBorder')
+      document.getElementById('surname_label').classList.remove('errColor')
+      document.getElementById('name_label').classList.remove('errColor')
+      
+      
       errorArr.forEach(el => {
         if(el.field === 'name'){
+          nameInput.classList.add('errBorder')
+          document.getElementById('name_label').classList.add('errColor')
           nameError.textContent = el.message
           errBlock.append(nameError)
         } 
         if(el.field === 'surname'){
+          surnameInput.classList.add('errBorder')
+          document.getElementById('surname_label').classList.add('errColor')
           surNameError.textContent = el.message
           errBlock.append(surNameError)
         }
