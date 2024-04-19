@@ -48,6 +48,11 @@ async function addContact(client){
       }
     })
     .then((client) => console.log(`Клиент ${client.name} успешно добавлен`))
+    .then(async() =>{
+      const allClients = await getClients()
+      list.innerHTML = ''
+      await renderList(allClients)
+    })
   } catch (err){
     console.log('Ошибка запроса catch ',err)
   }
@@ -68,13 +73,18 @@ async function sendChangeContact(client,id){
       }
     })
     .then((client) => console.log(`Клиент ${client.name} успешно добавлен`))
+    .then(async() =>{
+      const allClients = await getClients()
+      list.innerHTML = ''
+      await renderList(allClients)
+    })
   } catch (err){
     console.log('Ошибка запроса catch ',err)
   }
 }
 
 // ? Удаление клиента
-function deleteUserFromBase(id){
+async function deleteUserFromBase(id){
   fetch(`http://localhost:3000/api/clients/${id}`,{
     method: 'DELETE'
   })
@@ -85,6 +95,11 @@ function deleteUserFromBase(id){
     return resp
   })
   .then(data => console.log('Пользователь удален'))
+  .then(async() =>{
+    const allClients = await getClients()
+    list.innerHTML = ''
+    await renderList(allClients)
+  })
   .catch(err => console.log('Ошибка с удалением ',err))
 }
 
@@ -194,8 +209,10 @@ async function changeUserFn(id) {
   delBtnInChange.addEventListener('click',() => {
     closeAddPopup()
     delPopup.classList.remove('dn')
-    document.getElementById('del_btn').addEventListener('click',() => {
-      deleteUserFromBase(id)
+    document.getElementById('del_btn').addEventListener('click',async () => {
+      await deleteUserFromBase(deleteId)
+      
+      closeAddPopup()
     })
   })
   try {
@@ -318,11 +335,7 @@ save_user_add.addEventListener('click',async () => {
         })
       }
     }
-    let allClients = await getClients()
     await addContact(dataForSend)
-    allClients = await getClients()
-    list.innerHTML = ''
-    await renderList(allClients)
     closeAddPopup()
   }
 })
@@ -489,6 +502,7 @@ async function renderList(allClients){
 
       changeUser.addEventListener('click',() => {
         changeUserFn(allClients[i].id)
+        deleteId = allClients[i].id;
         document.getElementById('cancle_add').classList.add('dn')
         document.getElementById('del_user_add').classList.remove('dn')
         document.getElementById('popup_title').textContent = `Изменить данные `
@@ -501,8 +515,9 @@ async function renderList(allClients){
       deleteUser.addEventListener('click',() => {
         deleteId = allClients[i].id;
         delPopup.classList.remove('dn')
-        document.getElementById('del_btn').addEventListener('click',() => {
-          deleteUserFromBase(deleteId)
+        document.getElementById('del_btn').addEventListener('click',async () => {
+          await deleteUserFromBase(deleteId)
+          closeAddPopup()
         })
       })
       list.append(item);
