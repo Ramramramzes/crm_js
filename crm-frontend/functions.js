@@ -173,7 +173,6 @@ function addContact_popup(){
 
 //? Закрыть попап
 function closeAddPopup(){
-  const del_popup = document.getElementById('del_popup')
   delPopup.classList.add('dn')
   const surnameInput = document.getElementById('surname_input_add')
   const nameInput = document.getElementById('name_input_add')
@@ -233,11 +232,17 @@ async function changeUserFn(id) {
       }
     }
 
+
+    if(document.querySelectorAll('.change_contact').length > 1){
+      for (let i = 1; i < document.querySelectorAll('.change_contact').length; i++) {
+        document.querySelectorAll('.change_contact')[i].remove()
+      }
+    }
     const sendChange = document.createElement('button')
     sendChange.id = 'change_contact'
+    sendChange.className = 'change_contact'
     sendChange.textContent = 'Сохранить'
-    document.getElementById('popup_btns').append(sendChange)
-
+    document.getElementById('popup_btns').append(sendChange)  
     document.getElementById('save_user_add').classList.add('dn')
 
     sendChange.addEventListener('click',()=> {
@@ -350,6 +355,7 @@ add_user_popup.addEventListener('click',() => {
   document.getElementById('cancle_add').classList.remove('dn')
   document.getElementById('save_user_add').classList.remove('dn')
   
+  document.getElementById('change_contact').remove()
 })
 
 //? Кнопка вне попапа то же самое что и отмена ниже
